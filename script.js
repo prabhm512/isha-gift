@@ -3,16 +3,17 @@ document.addEventListener("DOMContentLoaded", function () {
     const valueInput = document.getElementById("valueInput");
     const submitButton = document.getElementById("submitButton");
     const message = document.getElementById("message");
-    var key = ""
 
-    fetch("config.json") // Replace with the path to your JSON file
-    .then(response => response.json())
-    .then(data => {
-        key = data.key
-    })
+    const key = "test"
+
+    const tryAgainMessages = [
+        "Oops! Try again!",
+        "Give it another shot!",
+        "Let's try that again!",
+      ];
 
     submitButton.addEventListener("click", function () {
-        console.log("test")
+        console.log("submit button working")
         const enteredValue = valueInput.value;
 
         // Check if the entered value is correct
@@ -21,7 +22,9 @@ document.addEventListener("DOMContentLoaded", function () {
             window.location.href = "https://drive.google.com/file/d/18pT_Sw7SfAtOg2yl5Rmkz_NjFHUgku7d/view?usp=sharing";
         } else {
             // If incorrect, display an error message
-            message.innerText = "Incorrect value. Please try again.";
+            // message.innerText = "Try again!";
+            const randomIndex = Math.floor(Math.random() * tryAgainMessages.length);
+            message.innerText = tryAgainMessages[randomIndex];
         }
     });
 });
